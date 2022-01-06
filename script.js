@@ -1,71 +1,70 @@
-let myLibrary = [];
-
-let titleInput = document.querySelector(".title-input");
-let authorInput = document.querySelector(".author-input");
-let pagesInput = document.querySelector(".pages-input");
-let readInput = document.querySelector(".read-input");
-const libraryContainer = document.querySelector("#library-container");
-const addBtn = document.querySelector("#addBtn");
-
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.info = function () {
-    return `${title} by ${author}, ${pages} pages, ${read}.`;
-  };
+// Book constructor
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 }
 
+// Library
+const myLibrary = [];
+let newBook;
+
+// add a book to the Library
 function addBookToLibrary() {
-  event.preventDefault();
-  newBook = new Book(titleInput, authorInput, pagesInput, readInput);
+  newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook);
 }
+const btnSubmit = document.querySelector("#submit");
+btnSubmit.addEventListener("click", addBookToLibrary());
+console.log(myLibrary);
 
-function displayBook(item) {
+// add book to DOM and display
+function displayBook() {
+  const display = document.querySelector("#book-list");
+  const books = document.querySelectorAll(".book");
+  books.forEach((book) => display.removeChild(book));
+
+  for (let i = 0; i < myLibrary.length; i++) {
+    createBook(myLibrary[i]);
+  }
+}
+
+//creates the book to be displayed
+function createBook(item) {
+  const library = document.querySelector("#book-list");
   const divBook = document.createElement("div");
-  const divTitle = document.createElement("p");
-  const divAuthor = document.createElement("p");
-  const divPages = document.createElement("p");
-  const readBtn = document.createElement("button");
-  const removeBtn = document.createElement("button");
+  const divTitle = document.createElement("div");
+  const divAuthor = document.createElement("div");
+  const divPages = document.createElement("div");
+  const btnRead = document.createElement("button");
+  const btnRemove = document.createElement("button");
+
+  divBook.classList.add("book");
+  divBook.setAttribute("id", myLibrary.indexOf(item));
 
   divTitle.textContent = item.title;
   divTitle.classList.add("title");
-  divBook.append(divTitle);
+  divBook.appendChild(divTitle);
+
   divAuthor.textContent = item.author;
   divAuthor.classList.add("author");
-  divBook.append(divAuthor);
+  divBook.appendChild(divAuthor);
+
   divPages.textContent = item.pages;
   divPages.classList.add("pages");
-  divBook.append(divPages);
-}
+  divBook.appendChild(divPages);
 
-addBtn.addEventListener("click", displayBook());
-
-// Get the modal
-let modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-let btn = document.getElementById("open-modal");
-
-// Get the <span> element that closes the modal
-let span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal
-btn.onclick = function () {
-  modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  btnRead.classList.add("btnRead");
+  divBook.appendChild(btnRead);
+  if (item.read.value === "Read") {
+    btnRead.textContent = "Read";
+    btnRead.style.backgroundColor = "#1aff00";
+  } else {
+    btnRead.textContent = "Not Read";
+    btnRead.style.backgroundColor = "#ff0008";
   }
-};
+  library.appendChild(divBook);
+}

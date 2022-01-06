@@ -1,33 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyLibraryApp</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>My Library</h1>
-        <button>Sign In</button>
-    </header>
-    <div class= "button-container"><button id="open-modal">Add New Book</button></div>
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <div class="close-button"><span class="close">&times;</span></div>
-    <input id="title-input" type="text" placeholder="Title">
-    <input id="author-input" type="text" placeholder="Author">
-    <input id="pages-input" type="text" placeholder="Pages">
-    <select id="read-input">
-      <option class="read">Read</option>
-      <option class="not-read"> Not Read</option>
+  <div id="heading"><h1>My<span>Library</span>App</h1></div>
+  <h3 id="info">Add all your favourite books, information about them and whether you read them or not into your own book list!</h3>
+  <div id="form-book">
+    <input type="text" id="input-title" placeholder="Title">
+    <input type="text" id="input-auhor" placeholder="Author">
+    <input type="text" id="input-pages" placeholder="Pages">
+    <select name="Did you read it yet?" id="input-read">
+      <option value="read">Read</option>
+      <option value="not-read">Not Read</option>
     </select>
-    <button id="addBtn" type="button">Submit</button>
+    <button id="submit" type="button">Submit</button>
   </div>
-</div>
-<div id="library-container"></div>
-
+  <div id="book-list"></div>
 </body>
-</html> 
+</html>
