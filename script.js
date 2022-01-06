@@ -1,5 +1,12 @@
 let myLibrary = [];
 
+let titleInput = document.querySelector(".title-input");
+let authorInput = document.querySelector(".author-input");
+let pagesInput = document.querySelector(".pages-input");
+let readInput = document.querySelector(".read-input");
+const libraryContainer = document.querySelector("#library-container");
+const addBtn = document.querySelector("#addBtn");
+
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -11,8 +18,31 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
-  newBook = new Book(title.author, pages, read);
+  event.preventDefault();
+  newBook = new Book(titleInput, authorInput, pagesInput, readInput);
+  myLibrary.push(newBook);
 }
+
+function displayBook(item) {
+  const divBook = document.createElement("div");
+  const divTitle = document.createElement("p");
+  const divAuthor = document.createElement("p");
+  const divPages = document.createElement("p");
+  const readBtn = document.createElement("button");
+  const removeBtn = document.createElement("button");
+
+  divTitle.textContent = item.title;
+  divTitle.classList.add("title");
+  divBook.append(divTitle);
+  divAuthor.textContent = item.author;
+  divAuthor.classList.add("author");
+  divBook.append(divAuthor);
+  divPages.textContent = item.pages;
+  divPages.classList.add("pages");
+  divBook.append(divPages);
+}
+
+addBtn.addEventListener("click", displayBook());
 
 // Get the modal
 let modal = document.getElementById("myModal");
